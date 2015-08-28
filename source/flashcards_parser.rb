@@ -22,6 +22,7 @@ module CardParser
       elsif index % lines_per_card == 2
         deck << card
         card = {}
+        require 'pry'; binding.pry
       end
     end
     deck
@@ -29,4 +30,3 @@ module CardParser
 
 end
 
-p CardParser.make_cards('flashcard_samples.txt')

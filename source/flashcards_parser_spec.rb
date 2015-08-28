@@ -1,4 +1,4 @@
-require_relative 'card_parser'
+require_relative 'flashcards_parser'
 
 describe CardParser do
   let(:cards) { CardParser.read_file('flashcard_samples.txt') }

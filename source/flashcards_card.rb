@@ -17,6 +17,9 @@ class Card
   def answer
     @term
   end
+  def set_guess
+
+  end
 
  def correct?(guess)
    @term == guess

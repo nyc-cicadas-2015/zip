@@ -3,7 +3,7 @@ module CardParser
 
   def read_file(filepath)
     array = []
-    File.open(filepath, 'r').each do |line|
+    File.readlines(filepath).each do |line|
       array << line
     end
     array
@@ -13,18 +13,20 @@ module CardParser
     deck = []
     card = {}
     lines_per_card = 3
+
     read_file(file).each_with_index do |line, index|
       if index % lines_per_card == 0
         card[:definition] = line
       elsif index % lines_per_card == 1
-        card[:term] = line
+        card[:terms] = line
       elsif index % lines_per_card == 2
         deck << card
+        card = {}
       end
-    deck
     end
+    deck
   end
 
 end
 
-
+p CardParser.make_cards('flashcard_samples.txt')

@@ -1,5 +1,6 @@
 require 'flashcards_deck'
 
+
 class Card
 
   attr_accessor :term, :definition, :guess
@@ -19,12 +20,19 @@ class Card
   end
   def set_guess
 
+<<<<<<< HEAD
   end
 
  def correct?(guess)
    @term == guess
   end
 
+=======
+ def correct?(guess)
+   @term == guess
+  end
+
+>>>>>>> Add model
 
   def display
     if correct?

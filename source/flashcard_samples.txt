@@ -103,7 +103,7 @@ unless
 The inverse of while: executes code until a given condition is true, i.e., while it is not true. The semantics are the same as those of while.
 until
 
-Same as case.
+Used with case.
 when
 
 Takes a condition argument, and executes the code that follows (up to a matching end delimiter) while the condition is true.

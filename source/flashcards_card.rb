@@ -1,6 +1,5 @@
 require 'flashcards_deck'
 
-
 class Card
 
   attr_accessor :term, :definition, :guess

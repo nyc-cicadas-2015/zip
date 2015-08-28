@@ -1,6 +1,6 @@
 
-# require_relative 'flashcards_deck'
-#require_relative 'flashcards_card'
+require_relative 'flashcards_deck'
+require_relative 'flashcards_card'
 require_relative 'flashcards_parser'
 
 describe CardParser do

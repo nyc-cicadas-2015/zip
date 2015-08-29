@@ -1,7 +1,7 @@
 module CardParser
   extend self
 
-  def read_file filepath
+  def read_file(filepath)
     array = []
     File.readlines(filepath).each do |line|
       array << line
@@ -28,4 +28,3 @@ module CardParser
   end
 
 end
-

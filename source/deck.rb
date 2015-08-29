@@ -2,11 +2,13 @@ require_relative 'card'
 require_relative 'parser'
 
 class Deck
-
+  include CardParser
   attr_reader :deck
+
   def initialize(deck)
     @deck = []
-    # @still_left_in_deck = deck
+    @import_cards = read_file(filepath)
+    @import_cards.each { |card| @deck << Card.new(card) }
   end
 
   def shuffle
@@ -18,6 +20,3 @@ class Deck
   end
 
 end
-
-
-

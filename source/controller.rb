@@ -1,5 +1,5 @@
 require_relative 'deck'
-require_relative 'card'
+# require_relative 'card'
 require_relative 'view'
 
 class Controller
@@ -83,6 +83,13 @@ class Controller
       game_over
     end
 end
+
+cli_input = ARGV[0]
+sample_deck = Deck.new(cli_input)
+new_game = Controller.new(sample_deck)
+new_game.run_game!
+
+
 
 #   def run_game
 #     puts View.welcome #welcome message

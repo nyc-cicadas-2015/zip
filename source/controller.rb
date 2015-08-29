@@ -6,7 +6,7 @@ class Controller
   include View
 
   def initialize(filepath)
-    deck = Deck.new(CardParser.make_cards('flashcard_samples.txt'))
+    @deck = Deck.new(CardParser.make_cards('flashcard_samples.txt'))
   end
 
   def welcome

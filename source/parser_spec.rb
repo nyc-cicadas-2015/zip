@@ -1,7 +1,4 @@
-
-require_relative 'flashcards_deck'
-require_relative 'flashcards_card'
-require_relative 'flashcards_parser'
+require_relative 'parser'
 
 describe CardParser do
   let(:cards) { CardParser.read_file('flashcard_samples.txt') }
@@ -23,11 +20,3 @@ describe CardParser do
     end
   end
 end
-
-describe Deck do
-  let(:deck){Deck.new(CardParser.make_cards('flashcard_samples.txt'))}
-
-
-  describe "#shuffle" do
-    it 'should shuffle the deck' do
-      expect(deck.shuffle).to be_a(Array)

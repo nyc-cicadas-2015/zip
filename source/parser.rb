@@ -1,7 +1,7 @@
 module CardParser
   extend self
 
-  def read_file(filepath)
+  def read_file filepath
     array = []
     File.readlines(filepath).each do |line|
       array << line
@@ -9,7 +9,7 @@ module CardParser
     array
   end
 
-  def make_cards(file)
+  def make_cards file
     deck = []
     card = {}
     lines_per_card = 3
@@ -22,7 +22,6 @@ module CardParser
       elsif index % lines_per_card == 2
         deck << card
         card = {}
-        require 'pry'; binding.pry
       end
     end
     deck

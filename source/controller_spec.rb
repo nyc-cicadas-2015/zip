@@ -25,9 +25,39 @@ describe Controller do
 
   describe 'prompt' do
     it 'should display a small prompt' do
-      expect{control.prompt}.to output('>> ').to_stdout
+      expect{ control.prompt }.to output('>> ').to_stdout
     end
   end
+
+  describe 'game over' do
+    it 'should display a game over message' do
+      expect{ control.game_over }.to output('Game Over!').to_stdout
+    end
+  end
+
+  describe 'guess_response' do
+    it 'should display an incorrect response', :if => false do
+      expect { control.guess_response }.to output('Try again!').to_stdout
+    end
+
+    # it 'should display a correct response', :if => true do
+    #   expect { control.guess_response }.to output ('Correct!').to_stdout
+    # end
+    # Not sure on how to write a test for this part
+  end
+
+
+  # describe 'quit' do
+  #   it 'should exit the game' do
+  #     expect { raise control.quit }.raise_exception(SystemExit)
+  #   end
+  # end
+
+  # describe 'correct?' do
+  #   it 'should return a boolean value' do
+  #     expect(control.guess).to be_false
+  #   end
+  # end
 
   # describe 'guess' do
   #   it'should take

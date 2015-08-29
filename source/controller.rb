@@ -4,8 +4,6 @@ require_relative 'view'
 
 class Controller
   attr_reader :deck
-  # include CardParser
-  # include View
 
   def initialize deck
     @deck = deck
@@ -23,10 +21,6 @@ class Controller
     View.question_prompt
   end
 
-  def prompt
-    View.answer_prompt
-  end
-
   def guess
     prompt
     @user_guess = View.input
@@ -36,6 +30,59 @@ class Controller
   def correct?
     @card.term == @user_guess
   end
+
+  def quit
+    abort("Thanks for playing!")
+  end
+
+  def game_over
+    View.game_over
+  end
+
+  def guess_response
+    if correct?
+      View.console('Correct!')
+    else
+      View.console('Try again!')
+    end
+    View.console("\n")
+  end
+
+  def show_question
+    View.question_prompt
+    View.console("\n")
+    View.console @card.definition
+    View.console("\n")
+  end
+
+  def get_answer?
+    @user_guess == "answer"
+  end
+
+  def show_answer
+    View.console("Answer: " + @card.term)
+    View.console
+  end
+
+  def run_game!
+    welcome
+    while !deck.empty?
+      shuffle
+      show_question
+      while !correct?
+        guess
+        if exit?
+          quit
+        elsif get_answer?
+            show_answer
+            break
+          end
+          guess_response
+        end
+      end
+      game_over
+    end
+end
 
 #   def run_game
 #     puts View.welcome #welcome message
@@ -54,8 +101,3 @@ class Controller
 #   end
 #   deck.card_guessed?
 # end
-
-
-
-end
-

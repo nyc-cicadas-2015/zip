@@ -21,9 +21,8 @@ module View
     print '>> '
   end
 
-  def console(string)
+  def console string
     print string
   end
 
 end
-

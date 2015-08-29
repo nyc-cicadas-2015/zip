@@ -1,11 +1,11 @@
 module View
   extend self
 
-  def welcome_msg
+  def welcome
     puts "Welcome to Flashcards!"
   end
 
-  def game_over_msg
+  def game_over
     puts "Game Over!"
   end
 
@@ -26,5 +26,3 @@ module View
   end
 end
 
-View.welcome_msg
-View.game_over_msg

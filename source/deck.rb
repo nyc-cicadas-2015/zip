@@ -1,5 +1,5 @@
-require 'flashcards_card'
-require_relative 'flashcards_parser'
+require_relative 'card'
+require_relative 'parser'
 
 class Deck
 
@@ -11,7 +11,7 @@ class Deck
 
   def shuffle
     still_left_in_deck.shuffle!
-    still_left_in_deck
+    # still_left_in_deck
   end
 
   def definition

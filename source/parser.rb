@@ -22,7 +22,6 @@ module CardParser
       elsif index % lines_per_card == 2
         deck << card
         card = {}
-        require 'pry'; binding.pry
       end
     end
     deck

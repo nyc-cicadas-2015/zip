@@ -1,16 +1,40 @@
 require_relative 'deck'
 require_relative 'card'
+require_relative 'view'
 
 class Controller
-  include CardParser
-  include View
+  attr_reader :deck
+  # include CardParser
+  # include View
 
-  def initialize(filepath)
-    @deck = Deck.new(CardParser.make_cards('flashcard_samples.txt'))
+  def initialize deck
+    @deck = deck
   end
 
   def welcome
     View.welcome
+  end
+
+  def shuffle_card
+    @card = deck.shuffle
+  end
+
+  def prompt
+    View.question_prompt
+  end
+
+  def prompt
+    View.answer_prompt
+  end
+
+  def guess
+    prompt
+    @user_guess = View.input
+    View.console("\n")
+  end
+
+  def correct?
+    @card.term == @user_guess
   end
 
 #   def run_game
@@ -34,3 +58,4 @@ class Controller
 
 
 end
+

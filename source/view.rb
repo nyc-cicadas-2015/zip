@@ -2,15 +2,15 @@ module View
   extend self
 
   def welcome
-    puts "Welcome to Flashcards!"
+    print "Welcome to Flashcards!"
   end
 
   def game_over
-    puts "Game Over!"
+    print "Game Over!"
   end
 
-  def prompt
-    puts "Enter answer: "
+  def answer_prompt
+    print "Enter answer: "
   end
 
   def input
@@ -22,7 +22,8 @@ module View
   end
 
   def console(string)
-    puts string
+    print string
   end
+
 end
 

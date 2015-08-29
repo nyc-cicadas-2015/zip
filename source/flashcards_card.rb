@@ -1,42 +1,9 @@
-require 'flashcards_deck'
+require_relative 'flashcards_parser'
 
 class Card
-
-  attr_accessor :term, :definition, :guess
-  def initialize
-    @term = term
-    @definition = definition
-    @guess = guess
+  attr_accessor :term, :definition
+  def initialize(flashcards= {})
+    @term = flashcards[:term]
+    @definition = flashcards[:definition]
   end
-
-
-  def question
-    @definition
-  end
-
-  def answer
-    @term
-  end
-  def set_guess
-
-  end
-
- def correct?(guess)
-   @term == guess
-  end
-
-
-  def display
-    if correct?
-     puts "#{term}, was the correct guess, WAY TO GO BITCH!"
-   else
-    puts "#{guess}, was not the correct answer, please try again"
-  end
-end
-
-  # def guess_counter
-
-  #   if correct? != true
-  #     counter += 1
-  # end
 end

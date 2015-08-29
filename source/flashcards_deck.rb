@@ -33,6 +33,7 @@ class Deck
   def end_game?
     still_left_in_deck.empty?
   end
+
 end
 
 

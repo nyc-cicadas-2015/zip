@@ -1,4 +1,3 @@
-
 module CardParser
   extend self
 

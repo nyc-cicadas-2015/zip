@@ -13,7 +13,7 @@ describe Controller do
 
   describe 'welcome' do
     it 'should display a message' do
-      expect{control.welcome}.to output('Welcome to Flashcards!').to_stdout
+      expect{control.welcome}.to output("Welcome to Flashcards! Enter the term after the definition or 'quit' to end the game. Hit 'enter' to begin.").to_stdout
     end
   end
 

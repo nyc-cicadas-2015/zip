@@ -18,7 +18,7 @@ module CardParser
       if index % lines_per_card == 0
         card[:definition] = line
       elsif index % lines_per_card == 1
-        card[:terms] = line
+        card[:term] = line
       elsif index % lines_per_card == 2
         deck << card
         card = {}

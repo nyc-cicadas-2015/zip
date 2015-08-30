@@ -2,7 +2,7 @@ module View
   extend self
 
   def welcome
-    print "Welcome to Flashcards!"
+    print "Welcome to Flashcards! Enter the term after the definition or 'quit' to end the game. Hit 'enter' to begin."
   end
 
   def game_over
@@ -14,7 +14,7 @@ module View
   end
 
   def input
-    $stdin.gets
+    gets
   end
 
   def question_prompt

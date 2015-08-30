@@ -14,9 +14,9 @@ class Deck
     flash_deck.pop
   end
 
-  def empty?
-    @deck.empty?
-  end
+  # def empty?
+  #   @deck.empty?
+  # end
 
 end
 

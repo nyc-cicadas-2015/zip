@@ -2,6 +2,7 @@ module View
   extend self
 
   def welcome
+    system "clear"
     title = Artii::Base.new
     print '*' * 83
     print "\n"

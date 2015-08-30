@@ -13,7 +13,6 @@ class Controller
     @end_game = false
     @user_guess = ''
     @card = nil
-
   end
 
   def welcome
@@ -37,6 +36,8 @@ class Controller
   def guess_response
     if correct?(@card.term)
       View.console('Correct!'.green + "\n")
+    elsif @user_guess == 'quit'
+      game_quit
     else
       View.console('Try Again!'.red + "\n")
     end
@@ -57,7 +58,7 @@ class Controller
 
 
   def run_game
-    shuffle_card
+    deck = shuffle_card
     View.welcome
     View.input
     counter = 0
@@ -80,11 +81,14 @@ class Controller
         end
       end
        counter += 1
+        if counter > 36
+         counter = 0
+         deck = shuffle_card
+         end
     end
    end
   end
 deck = CardParser.make_cards('flashcard_samples.txt')
 
 game = Controller.new(deck)
-game.run_game
-
+# game.run_game

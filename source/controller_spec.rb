@@ -29,14 +29,14 @@ describe Controller do
     end
   end
 
-  describe 'guess_response' do
-    it 'should display an incorrect response', :if => true do
-      expect { control.guess_response }.to output('Try Again!').to_stdout
-    end
-  end
+
 
   describe 'run_game' do
-    it 'should'
+    describe 'guess_response' do
+      it 'should display an incorrect response', :if => true do
+        expect {control.guess_response}.to output('Try Again!').to_stdout
+      end
+    end
   end
 
 

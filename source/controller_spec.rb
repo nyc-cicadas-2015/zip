@@ -13,7 +13,7 @@ describe Controller do
 
   describe 'welcome' do
     it 'should display a message' do
-      expect{control.welcome}.to output('Welcome to Flashcards!').to_stdout
+      expect{ control.welcome }.to output.to_stdout
     end
   end
 
@@ -25,10 +25,28 @@ describe Controller do
 
   describe 'prompt' do
     it 'should display a small prompt' do
-      expect{control.prompt}.to output('>> ').to_stdout
+      expect{ control.prompt }.to output('>> ').to_stdout
     end
   end
 
+  describe 'guess_response' do
+    it 'should display an incorrect response', :if => true do
+      expect { control.guess_response }.to output('Try Again!').to_stdout
+    end
+  end
+
+  describe 'run_game' do
+    it 'should'
+  end
+
+
+  # describe 'quit' do
+  #   it 'should exit the game' do
+  #     expect {control.game_quit}.to raise_error SystemExit
+  #   end
+  # end
+  # Not sure how to test abort
+end
   # describe 'guess' do
   #   it'should take
   #   output = capture_standard_output { control.guess }
@@ -37,4 +55,4 @@ describe Controller do
   # expect(game.ask_for_name).to eq 'alias'
   # end
   # # Could not get user input test to work
-end
+

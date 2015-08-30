@@ -1,14 +1,19 @@
 require_relative 'deck'
 require_relative 'card'
 require_relative 'view'
+require 'colorize'
+require 'artii'
 
 class Controller
-  attr_reader :deck
-  # include CardParser
+  attr_reader :end_game, :card
+  attr_accessor :deck, :user_guess
   # include View
-
-  def initialize deck
+  def initialize(deck)
     @deck = deck
+    @end_game = false
+    @user_guess = ''
+    @card = nil
+
   end
 
   def welcome
@@ -23,39 +28,63 @@ class Controller
     View.question_prompt
   end
 
-  def prompt
-    View.answer_prompt
+  def game_quit
+    if @user_guess == "quit\n"
+    abort('Bye!'.yellow)
+    end
   end
+
+  def guess_response
+    if correct?(@card.term)
+      View.console('Correct!'.green + "\n")
+    else
+      View.console('Try Again!'.red + "\n")
+    end
+  end
+
+   def end_game?
+     @end_game
+   end
 
   def guess
     prompt
     @user_guess = View.input
-    View.console("\n")
   end
 
-  def correct?
-    @card.term == @user_guess
+  def correct?(card_answer)
+    card_answer == @user_guess
   end
 
-#   def run_game
-#     puts View.welcome #welcome message
-#       sleep 0.1
-#     puts View.rules #instructions on the game
-#       sleep 0.1
-#   5.times do
-#     until deck.end_game?
-#       # puts view.definition #definition of the card
-#       puts deck.definition
-#         sleep 0.5
-#       puts view.guess
-#       puts deck.correct?(gets.chomp.downcase) # does the term equal the guess
-#         sleep 0.1
-#     end
-#   end
-#   deck.card_guessed?
-# end
 
+  def run_game
+    shuffle_card
+    View.welcome
+    View.input
+    counter = 0
+    until @end_game == true
+      @card = Card.new(deck[counter])
+       puts card.definition
+      View.answer_prompt
+      guess
+      @user_guess
+      game_quit
+      guess_response
+      loop = 1
+      while !correct?(@card.term)
+        guess
+        guess_response
+        loop += 1
+        if loop == 3
+          View.console("The answer is: " + @card.term.green)
+          break
+        end
+      end
+       counter += 1
+    end
+   end
+  end
+deck = CardParser.make_cards('flashcard_samples.txt')
 
-
-end
+game = Controller.new(deck)
+game.run_game
 

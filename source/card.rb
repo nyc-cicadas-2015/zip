@@ -1,5 +1,5 @@
 class Card
-  attr_accessor :term, :definition
+  attr_reader :term, :definition
 
   def initialize(args)
     @definition = args.fetch(:definition)

@@ -13,7 +13,7 @@ describe Controller do
 
   describe 'welcome' do
     it 'should display a message' do
-      expect{control.welcome}.to output("Welcome to Flashcards! Enter the term after the definition or 'quit' to end the game. Hit 'enter' to begin.").to_stdout
+      expect{ control.welcome }.to output.to_stdout
     end
   end
 
@@ -25,22 +25,27 @@ describe Controller do
 
   describe 'prompt' do
     it 'should display a small prompt' do
-      expect{control.prompt}.to output('>> ').to_stdout
+      expect{ control.prompt }.to output('>> ').to_stdout
     end
   end
 
-    it 'should display a correct response', :if => true do
-      expect { control.guess_response }.to output ('Correct!').to_stdout
-    end
-    # Not sure on how to write a test for this part
-
-
-
-  describe 'quit' do
-    it 'should exit the game' do
-      expect { raise control.quit }.raise_exception(SystemExit)
+  describe 'guess_response' do
+    it 'should display an incorrect response', :if => true do
+      expect { control.guess_response }.to output('Try Again!').to_stdout
     end
   end
+
+  describe 'run_game' do
+    it 'should'
+  end
+
+
+  # describe 'quit' do
+  #   it 'should exit the game' do
+  #     expect {control.game_quit}.to raise_error SystemExit
+  #   end
+  # end
+  # Not sure how to test abort
 end
   # describe 'guess' do
   #   it'should take

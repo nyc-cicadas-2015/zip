@@ -10,7 +10,8 @@ class Deck
   end
 
   def shuffle
-    @deck.shuffle!.pop
+    flash_deck = @deck.shuffle!
+    flash_deck.pop
   end
 
   def empty?

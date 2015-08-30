@@ -1,6 +1,8 @@
 require_relative 'deck'
 require_relative 'card'
 require_relative 'view'
+require 'colorize'
+require 'artii'
 
 class Controller
   attr_reader :end_game, :card
@@ -26,19 +28,18 @@ class Controller
     View.question_prompt
   end
 
-  def game_status
+  def game_quit
     if @user_guess == "quit\n"
-    abort('Bye!')
-     @end_game = true #this is pointless, but we need to keep the loop in run_game
+    abort('Bye!'.yellow)
     end
   end
+
   def guess_response
-     case correct?(@card.term)
-        when true
-        View.console("Correct!")
-        else
-          View.console("Wrong!")
-     end
+    if correct?(@card.term)
+      View.console('Correct!'.green + "\n")
+    else
+      View.console('Try Again!'.red + "\n")
+    end
   end
 
    def end_game?
@@ -48,38 +49,42 @@ class Controller
   def guess
     prompt
     @user_guess = View.input
-
   end
 
   def correct?(card_answer)
-      card_answer == @user_guess
+    card_answer == @user_guess
   end
 
 
   def run_game
     shuffle_card
-
-    puts View.welcome #welcome message
-    sleep 0.1
+    View.welcome
     View.input
     counter = 0
     until @end_game == true
       @card = Card.new(deck[counter])
        puts card.definition
-        sleep 0.1
       View.answer_prompt
       guess
       @user_guess
-      counter += 1
-      game_status
+      game_quit
       guess_response
-        sleep 0.1
+      loop = 1
+      while !correct?(@card.term)
+        guess
+        guess_response
+        loop += 1
+        if loop == 3
+          View.console("The answer is: " + @card.term.green)
+          break
+        end
+      end
+       counter += 1
     end
    end
   end
 deck = CardParser.make_cards('flashcard_samples.txt')
- # thing = Card.new(deck)
 
- game = Controller.new(deck)
-   # game.run_game
+game = Controller.new(deck)
+game.run_game
 

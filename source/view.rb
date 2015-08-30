@@ -2,7 +2,14 @@ module View
   extend self
 
   def welcome
-    print "Welcome to Flashcards! Enter the term after the definition or 'quit' to end the game. Hit 'enter' to begin."
+    title = Artii::Base.new
+    print '*' * 83
+    print "\n"
+    print title.asciify('Ruby Flashcards!').blue
+    print "\n"
+    print "Enter the term after the definition or " + "'quit' ".red + "to end the game. Hit " + "'enter' ".green + "to begin."
+    print "\n"
+    print '*' * 83
   end
 
   def game_over
@@ -22,8 +29,7 @@ module View
   end
 
   def console(string)
-    puts string
+    print string
   end
-
 end
 

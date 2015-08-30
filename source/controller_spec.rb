@@ -29,6 +29,19 @@ describe Controller do
     end
   end
 
+    it 'should display a correct response', :if => true do
+      expect { control.guess_response }.to output ('Correct!').to_stdout
+    end
+    # Not sure on how to write a test for this part
+
+
+
+  describe 'quit' do
+    it 'should exit the game' do
+      expect { raise control.quit }.raise_exception(SystemExit)
+    end
+  end
+end
   # describe 'guess' do
   #   it'should take
   #   output = capture_standard_output { control.guess }
@@ -37,4 +50,4 @@ describe Controller do
   # expect(game.ask_for_name).to eq 'alias'
   # end
   # # Could not get user input test to work
-end
+

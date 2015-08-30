@@ -22,7 +22,7 @@ module View
   end
 
   def console(string)
-    print string
+    puts string
   end
 
 end

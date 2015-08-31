@@ -36,6 +36,17 @@ class Controller
 
   def guess_response
     if correct?(@card.term)
+      # I would likely make these methods contained within the View
+      # itself.  Then your controller calls:
+      #
+      # View.display_correct
+      # or
+      # View.display_incorrect
+      #
+      # Your controller should not be determining how the display is
+      # formatted.  What if we want to substitute an HTML display?  If
+      # your controller is properly constrained, it should be a simple
+      # swap.
       View.console('Correct!'.green + "\n")
     else
       View.console('Try Again!'.red + "\n")
@@ -67,10 +78,32 @@ class Controller
       View.answer_prompt
       guess
       @user_guess
+
+      # I feel like if I were designing these components, I would like to be able
+      # to do something like:
+      #
+      # guess = View.ask_question(@card)
+      # if @card.correct_answer?(guess)
+      # else
+      # end
+
+      # The Card object should know how to check if the answer provided is correct
+      # The View object should be responsible for anything input/output related
+      # (in relation to the user)
+      # The Controller's job is simply to manage program flow between the objects
+      #
       game_quit
       guess_response
       loop = 1
       while !correct?(@card.term)
+      # I would love to see this loop look like:
+      #
+      # until @card.correct?(View.prompt_user(@card)) or loop >= 3
+      # ...
+      # end
+      #
+      # Or something similar to that
+      #
         guess
         guess_response
         loop += 1
@@ -83,6 +116,21 @@ class Controller
     end
    end
   end
+
+  # It seems like you never actually use your Deck object.  Your parser returns
+  # and array of hashes, which you then use to instantiate a Card object within
+  # your class.  The CardParser should return an array of Card objects, which you
+  # can then pass to your Deck object, which can then be used within your controller:
+  #
+  # cards = CardParser.make_cards('flashcard_samples.txt')
+  # deck = Deck.new(cards)
+  # game = Contoller.new(deck)
+  # game.run_game
+  # ...
+  #
+  # You defined the proper objects/classes, but it does not seem as though you
+  # utilized them properly.
+  #
 deck = CardParser.make_cards('flashcard_samples.txt')
 
 game = Controller.new(deck)

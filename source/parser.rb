@@ -27,5 +27,8 @@ module CardParser
     deck
   end
 
+  # I like the separation of concerns here.  I would take it the last step
+  # and have this module actually return an array of Card objects, rather than
+  # the data that makes up those cards.
 end
 
